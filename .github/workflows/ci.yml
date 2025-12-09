@@ -6,6 +6,10 @@ on:
   push:
     branches: [main]
 
+# Minimal permissions for security
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Lint
