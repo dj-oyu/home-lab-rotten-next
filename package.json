@@ -6,9 +6,15 @@
   "scripts": {
     "test": "bash proof/run-tests.sh",
     "test:manual": "node doc/exploit-sample.js id",
-    "dev": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1",
-    "build": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1",
-    "start": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "15.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-server-dom-webpack": "19.0.0"
   },
   "keywords": [
     "security",
@@ -18,5 +24,8 @@
     "cve-2025-55182"
   ],
   "author": "",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.17.0"
+  }
 }

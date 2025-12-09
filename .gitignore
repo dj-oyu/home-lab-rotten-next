@@ -34,3 +34,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# test logs (keep summary files, ignore timestamped logs)
+proof/test*_*.txt
+proof/test*_*.md
+!proof/test_initial_failure.md
