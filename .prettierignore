@@ -37,6 +37,7 @@ package-lock.json
 yarn.lock
 
 # test logs
-proof/test*_*.txt
-proof/test*_*.md
+proof/test_*_*.txt
+proof/test_*_*.md
+proof/test_summary_*.md
 !proof/test_initial_failure.md

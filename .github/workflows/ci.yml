@@ -115,6 +115,8 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    # Note: This job builds independently to ensure test isolation
+    # and avoid dependency on artifacts from the build job
     steps:
       - uses: actions/checkout@v4
 
