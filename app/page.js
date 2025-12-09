@@ -6,6 +6,8 @@
  * CVE-2025-55182（React2Shell）の脆弱性を再現するための最小構成です。
  */
 
+import { vulnerableAction } from './actions'
+
 /**
  * ホームページコンポーネント
  *
@@ -90,6 +92,11 @@ export default function Home() {
         <p><strong>Server Actions:</strong> app/actions.js に vulnerableAction が定義されています。</p>
         <p>この関数は意図的に入力検証を省略しており、exploit-sample.jsからのペイロードを処理します。</p>
       </div>
+
+      {/* Server Actionを露出するためのフォーム（非表示） */}
+      <form action={vulnerableAction} style={{ display: 'none' }}>
+        <input type="hidden" name="data" />
+      </form>
     </main>
   )
 }
