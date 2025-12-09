@@ -23,9 +23,8 @@
 │   ├── layout.js        # ルートレイアウト
 │   └── page.js          # メインページ (Server Actionを公開)
 ├── doc/
-│   ├── exploit-sample.js         # 初期exploit (dwisiswant0版)
-│   ├── exploit-test.js           # 修正版exploit
-│   └── exploit-official-poc.js   # 公式PoC (Lachlan Davidson版)
+│   ├── exploit-sample.js         # シンプルなexploit (dwisiswant0版ベース)
+│   └── exploit-official-poc.js   # 公式PoC参照実装 (Lachlan Davidson版)
 ├── proof/
 │   ├── TEST_PLAN.md
 │   ├── run-tests.sh
