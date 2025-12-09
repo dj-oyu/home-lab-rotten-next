@@ -1,0 +1,22 @@
+{
+  "name": "home-lab-rotten-next",
+  "version": "0.1.0",
+  "private": true,
+  "description": "RSC脆弱性検証プロジェクト（教育・研究目的）",
+  "scripts": {
+    "test": "bash proof/run-tests.sh",
+    "test:manual": "node doc/exploit-sample.js id",
+    "dev": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1",
+    "build": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1",
+    "start": "echo 'Next.jsアプリケーションはまだ実装されていません' && exit 1"
+  },
+  "keywords": [
+    "security",
+    "research",
+    "education",
+    "rsc",
+    "cve-2025-55182"
+  ],
+  "author": "",
+  "license": "UNLICENSED"
+}
