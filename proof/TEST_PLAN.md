@@ -16,6 +16,7 @@
 ## テスト環境
 
 ### 必要な環境
+
 - WSL (Windows Subsystem for Linux)
 - Node.js v25.x
 - pnpm
@@ -23,6 +24,7 @@
 - localhost:3000で動作するNext.jsアプリケーション
 
 ### 環境確認コマンド
+
 ```bash
 node -v           # v25.x.x を確認
 pnpm -v           # インストール確認
@@ -38,7 +40,9 @@ curl --version    # curlの動作確認
 **目的**: 最も単純なコマンド（`id`）でexploitが成功することを確認
 
 **手順**:
+
 1. Next.jsアプリケーションを起動
+
    ```bash
    cd /home/user/home-lab-rotten-next
    pnpm dev
@@ -50,15 +54,18 @@ curl --version    # curlの動作確認
    ```
 
 **期待される結果**:
+
 - HTTPレスポンスにユーザーID情報が含まれる
 - 例: `uid=1000(user) gid=1000(user) groups=1000(user)`
 
 **成功確認方法**:
+
 - コンソール出力に「Response:」が表示される
 - レスポンスにシステムのユーザー情報が含まれている
 - エラーが発生しない
 
 **ログ保存**:
+
 ```bash
 node doc/exploit-sample.js id > proof/test1_id_output.txt 2>&1
 ```
@@ -70,19 +77,23 @@ node doc/exploit-sample.js id > proof/test1_id_output.txt 2>&1
 **目的**: より複雑なコマンドでexploitが機能することを確認
 
 **手順**:
+
 ```bash
 node doc/exploit-sample.js "echo \$USER"
 ```
 
 **期待される結果**:
+
 - 現在のユーザー名が表示される
 - 例: `root` または `user`
 
 **成功確認方法**:
+
 - レスポンスに環境変数の値が含まれている
 - シェルコマンドが正しく実行されている
 
 **ログ保存**:
+
 ```bash
 node doc/exploit-sample.js "echo \$USER" > proof/test2_env_output.txt 2>&1
 ```
@@ -94,19 +105,23 @@ node doc/exploit-sample.js "echo \$USER" > proof/test2_env_output.txt 2>&1
 **目的**: ファイルシステムアクセスが可能であることを確認
 
 **手順**:
+
 ```bash
 node doc/exploit-sample.js pwd
 ```
 
 **期待される結果**:
+
 - Next.jsアプリケーションのルートディレクトリパスが表示される
 - 例: `/home/user/home-lab-rotten-next`
 
 **成功確認方法**:
+
 - 有効なファイルパスが返される
 - パスがプロジェクトディレクトリを示している
 
 **ログ保存**:
+
 ```bash
 node doc/exploit-sample.js pwd > proof/test3_pwd_output.txt 2>&1
 ```
@@ -118,19 +133,23 @@ node doc/exploit-sample.js pwd > proof/test3_pwd_output.txt 2>&1
 **目的**: コマンド実行権限の範囲を確認
 
 **手順**:
+
 ```bash
 node doc/exploit-sample.js "ls -la"
 ```
 
 **期待される結果**:
+
 - プロジェクトディレクトリのファイル一覧が表示される
 - package.json、next.config.js等が確認できる
 
 **成功確認方法**:
+
 - ディレクトリ構造が正しく表示される
 - ファイルのパーミッション情報が取得できる
 
 **ログ保存**:
+
 ```bash
 node doc/exploit-sample.js "ls -la" > proof/test4_ls_output.txt 2>&1
 ```
@@ -142,18 +161,22 @@ node doc/exploit-sample.js "ls -la" > proof/test4_ls_output.txt 2>&1
 **目的**: コマンド連結が可能であることを確認
 
 **手順**:
+
 ```bash
 node doc/exploit-sample.js "whoami && hostname"
 ```
 
 **期待される結果**:
+
 - ユーザー名とホスト名の両方が表示される
 
 **成功確認方法**:
+
 - 両方のコマンドが順次実行される
 - 出力が2行になる
 
 **ログ保存**:
+
 ```bash
 node doc/exploit-sample.js "whoami && hostname" > proof/test5_multiple_output.txt 2>&1
 ```
@@ -202,6 +225,7 @@ node doc/exploit-sample.js "whoami && hostname" > proof/test5_multiple_output.tx
 **原因**: Next.jsアプリケーションが起動していない
 
 **解決策**:
+
 ```bash
 # アプリケーションが起動しているか確認
 curl http://localhost:3000
@@ -215,6 +239,7 @@ pnpm dev
 **原因**: ペイロードが正しく送信されていない
 
 **解決策**:
+
 1. exploit-sample.jsのコードを確認
 2. Next.jsのバージョンが15.0.0であることを確認
 3. Server Actionsが有効になっているか確認
@@ -224,6 +249,7 @@ pnpm dev
 **原因**: 脆弱性が存在しない（パッチ済み）
 
 **解決策**:
+
 1. react-server-dom-webpackのバージョンを確認
    ```bash
    pnpm list react-server-dom-webpack
@@ -296,11 +322,13 @@ EOF
 各テストの結果は以下の形式で保存します：
 
 ### ファイル命名規則
+
 ```
 proof/test{番号}_{テスト名}_output.txt
 ```
 
 ### ログ内容
+
 ```
 === テスト実行情報 ===
 日時: YYYY-MM-DD HH:MM:SS
@@ -322,16 +350,19 @@ proof/test{番号}_{テスト名}_output.txt
 ### 手順
 
 1. **react-server-dom-webpackをアップグレード**
+
    ```bash
    pnpm add react-server-dom-webpack@19.3.0
    ```
 
 2. **アプリケーション再起動**
+
    ```bash
    pnpm dev
    ```
 
 3. **同じテストを再実行**
+
    ```bash
    node doc/exploit-sample.js id
    ```
@@ -401,6 +432,7 @@ curl -X POST http://localhost:3000 \
 ## 次のステップ
 
 テスト完了後：
+
 1. 検証レポートの作成（proof/VERIFICATION_REPORT.md）
 2. 学習内容の整理
 3. チーム向けプレゼンテーション資料の準備
