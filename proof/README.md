@@ -11,13 +11,16 @@
 ## 📄 含まれるファイル
 
 ### ドキュメント
+
 - **TEST_PLAN.md** - テスト計画書（テストケース、手順、判定基準）
 - **README.md** - 本ファイル（proof/ディレクトリの説明）
 
 ### スクリプト
+
 - **run-tests.sh** - 自動テスト実行スクリプト
 
 ### テスト結果（実行後に生成）
+
 - `test1_id_YYYYMMDD_HHMMSS.txt` - idコマンドの実行結果
 - `test2_whoami_YYYYMMDD_HHMMSS.txt` - whoamiコマンドの実行結果
 - `test3_pwd_YYYYMMDD_HHMMSS.txt` - pwdコマンドの実行結果
@@ -28,21 +31,25 @@
 ## 🚀 使い方
 
 ### 1. テスト計画の確認
+
 ```bash
 cat proof/TEST_PLAN.md
 ```
 
 ### 2. Next.jsアプリケーションの起動
+
 ```bash
 pnpm dev
 ```
 
 ### 3. 自動テストの実行
+
 ```bash
 ./proof/run-tests.sh
 ```
 
 または、個別にテストを実行：
+
 ```bash
 node doc/exploit-sample.js id
 node doc/exploit-sample.js whoami
@@ -50,6 +57,7 @@ node doc/exploit-sample.js pwd
 ```
 
 ### 4. 結果の確認
+
 ```bash
 # 最新のサマリーを確認
 ls -lt proof/test_summary_*.md | head -1 | xargs cat
@@ -61,11 +69,13 @@ cat proof/test1_id_*.txt
 ## 📊 テスト結果の判定
 
 ### ✅ 成功の判定
+
 - コマンド実行結果が正しく返る
 - システム情報（uid、ユーザー名、パス等）が表示される
 - エラーなく完了する
 
 ### ❌ 失敗の判定
+
 - "Request failed"エラーが表示される
 - 空のレスポンスが返る
 - HTTPエラー（404、500等）が発生する
@@ -73,21 +83,27 @@ cat proof/test1_id_*.txt
 ## 🔍 成功の確認方法
 
 ### 例: idコマンドの成功例
+
 ```
 Response: 1:uid=0(root) gid=0(root) groups=0(root)
 ```
+
 ↑このようにユーザー情報が返れば成功
 
 ### 例: whoamiコマンドの成功例
+
 ```
 Response: 1:root
 ```
+
 ↑ユーザー名が返れば成功
 
 ### 例: pwdコマンドの成功例
+
 ```
 Response: 1:/home/user/home-lab-rotten-next
 ```
+
 ↑ディレクトリパスが返れば成功
 
 ## 📝 ログファイルの命名規則
@@ -120,6 +136,7 @@ pnpm dev
 ## 📚 学習リソース
 
 テスト実行を通じて学ぶポイント：
+
 1. デシリアライズの脆弱性メカニズム
 2. `.constructor`や`.prototype`へのアクセス制御
 3. Server Actionsの適切な実装

@@ -24,12 +24,14 @@ export default function RootLayout({ children }) {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body style={{
-        margin: 0,
-        padding: 0,
-        backgroundColor: '#f8f9fa',
-        color: '#212529'
-      }}>
+      <body
+        style={{
+          margin: 0,
+          padding: 0,
+          backgroundColor: '#f8f9fa',
+          color: '#212529',
+        }}
+      >
         {children}
       </body>
     </html>
