@@ -8,7 +8,10 @@
     "test:manual": "node doc/exploit-sample.js id",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,json,md}\""
   },
   "dependencies": {
     "form-data": "^4.0.5",
@@ -16,6 +19,11 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-server-dom-webpack": "19.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-next": "15.0.0",
+    "prettier": "^3.1.1"
   },
   "keywords": [
     "security",
